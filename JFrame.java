@@ -28,6 +28,7 @@ public class JFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,6 +38,13 @@ public class JFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        
+        jButton2.setText("DOM XML Parser");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -44,15 +52,19 @@ public class JFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(149, 149, 149)
-                .addComponent(jButton1)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(jButton1)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
         pack();
@@ -71,7 +83,117 @@ public class JFrame extends javax.swing.JFrame {
             chooser.getSelectedFile().getName());
        System.out.println("path: "+chooser.getSelectedFile().getPath());
     }
+        try {
+
+	File file = new File(chooser.getSelectedFile().getPath());
+
+	DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
+                             .newDocumentBuilder();
+
+	Document doc = dBuilder.parse(file);
+
+	System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+
+	if (doc.hasChildNodes()) {
+
+		printNote(doc.getChildNodes());
+
+	}
+
+    } catch (Exception e) {
+	System.out.println(e.getMessage());
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+        "XML File", "xml");
+    chooser.setFileFilter(filter);
+    int returnVal = chooser.showOpenDialog(this);
+    try {
+
+	File fXmlFile = new File(chooser.getSelectedFile().getPath());
+	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	Document doc = dBuilder.parse(fXmlFile);
+			
+	//optional, but recommended
+	//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+	doc.getDocumentElement().normalize();
+
+	System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+			
+	NodeList nList = doc.getElementsByTagName("staff");
+			
+	System.out.println("----------------------------");
+
+	for (int temp = 0; temp < nList.getLength(); temp++) {
+
+		Node nNode = nList.item(temp);
+				
+		System.out.println("\nCurrent Element :" + nNode.getNodeName());
+				
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+			Element eElement = (Element) nNode;
+
+			System.out.println("Staff id : " + eElement.getAttribute("id"));
+			System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
+			System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
+			System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
+			System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
+
+		}
+	}
+    } catch (Exception e) {
+	e.printStackTrace();
+    }
+    }                                        
+ private static void printNote(NodeList nodeList) {
+
+    for (int count = 0; count < nodeList.getLength(); count++) {
+
+	Node tempNode = nodeList.item(count);
+
+	// make sure it's element node.
+	if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+
+		// get node name and value
+		//System.out.println("\nNode Name =" + tempNode.getNodeName() + " [OPEN]");
+		System.out.println("Node Value =" + tempNode.getTextContent());
+
+		if (tempNode.hasAttributes()) {
+
+			// get attributes names and values
+			NamedNodeMap nodeMap = tempNode.getAttributes();
+
+			for (int i = 0; i < nodeMap.getLength(); i++) {
+
+				Node node = nodeMap.item(i);
+				//System.out.println("attr name : " + node.getNodeName());
+				//System.out.println("attr value : " + node.getNodeValue());
+
+			}
+
+		}
+
+		if (tempNode.hasChildNodes()) {
+
+			// loop again if has child nodes
+			printNote(tempNode.getChildNodes());
+
+		}
+
+		System.out.println("Node Name =" + tempNode.getNodeName() + " [CLOSE]");
+
+	}
+
+    }
+
+  }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -107,5 +229,6 @@ public class JFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
