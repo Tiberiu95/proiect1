@@ -2,6 +2,8 @@
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +23,8 @@ public class JFrame extends javax.swing.JFrame {
     public String input="English";
     public JFrame() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
             String[] choices = { "Romana", "English", "French", "Deutsch", "Greek" };
     input = (String) JOptionPane.showInputDialog(null, "Choose your language",
         "Choose now...", JOptionPane.QUESTION_MESSAGE, null, // Use
