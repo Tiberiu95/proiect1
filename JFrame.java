@@ -341,6 +341,7 @@ public class JFrame extends javax.swing.JFrame {
     jMenuItem8.setText(r.getString("it"));
     jTabbedPane1.addTab(r.getString("t1"), jPanel1);
     jTabbedPane1.addTab(r.getString("t2"), jPanel2);
+
     }                                          
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
