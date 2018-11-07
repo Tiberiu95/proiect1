@@ -339,6 +339,9 @@ public class JFrame extends javax.swing.JFrame {
     jMenuItem4.setText(r.getString("ge"));
     jMenuItem5.setText(r.getString("gr"));
     jMenuItem8.setText(r.getString("it"));
+    jTabbedPane1.addTab(r.getString("t1"), jPanel1);
+    jTabbedPane1.addTab(r.getString("t2"), jPanel2);
+
     }                                          
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -358,6 +361,8 @@ public class JFrame extends javax.swing.JFrame {
     jMenuItem4.setText(r.getString("ge"));
     jMenuItem5.setText(r.getString("gr"));
     jMenuItem8.setText(r.getString("it"));
+    jTabbedPane1.addTab(r.getString("t1"), jPanel1);
+    jTabbedPane1.addTab(r.getString("t2"), jPanel2);
     }                                          
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -377,6 +382,8 @@ public class JFrame extends javax.swing.JFrame {
     jMenuItem4.setText(r.getString("ge"));
     jMenuItem5.setText(r.getString("gr"));
     jMenuItem8.setText(r.getString("it"));
+    jTabbedPane1.addTab(r.getString("t1"), jPanel1);
+    jTabbedPane1.addTab(r.getString("t2"), jPanel2);
     }                                          
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -396,6 +403,8 @@ public class JFrame extends javax.swing.JFrame {
     jMenuItem4.setText(r.getString("ge"));
     jMenuItem5.setText(r.getString("gr"));
     jMenuItem8.setText(r.getString("it"));
+    jTabbedPane1.addTab(r.getString("t1"), jPanel1);
+    jTabbedPane1.addTab(r.getString("t2"), jPanel2);
     }                                          
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -415,6 +424,8 @@ public class JFrame extends javax.swing.JFrame {
     jMenuItem4.setText(r.getString("ge"));
     jMenuItem5.setText(r.getString("gr"));
     jMenuItem8.setText(r.getString("it"));
+    jTabbedPane1.addTab(r.getString("t1"), jPanel1);
+    jTabbedPane1.addTab(r.getString("t2"), jPanel2);
     }                                          
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -434,6 +445,8 @@ public class JFrame extends javax.swing.JFrame {
     jMenuItem4.setText(r.getString("ge"));
     jMenuItem5.setText(r.getString("gr"));
     jMenuItem8.setText(r.getString("it"));
+    jTabbedPane1.addTab(r.getString("t1"), jPanel1);
+    jTabbedPane1.addTab(r.getString("t2"), jPanel2);
     }                                          
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {                                           
